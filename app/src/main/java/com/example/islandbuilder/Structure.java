@@ -8,6 +8,7 @@ public class Structure
 {
     private final int drawableId;
     private String label;
+    private int selectedStructure;
 
     public Structure(int drawableId, String label)
     {
@@ -23,5 +24,13 @@ public class Structure
     public String getLabel()
     {
         return label;
+    }
+
+    public void setSelectedStructure(int selectedStructure) {
+        this.selectedStructure = selectedStructure;
+    }
+
+    public int getSelectedStructure() {
+        return selectedStructure;
     }
 }

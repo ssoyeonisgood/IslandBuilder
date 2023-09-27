@@ -19,6 +19,9 @@ public class MainActivity extends AppCompatActivity {
         fragManager.beginTransaction().replace(R.id.mapFrag, mapFragment).commit();
         fragManager.beginTransaction().replace(R.id.selectorFrag, selectorFragment).commit();
 
+        mapFragment.setSelectorFragment(selectorFragment);
+
+
 
     }
 }

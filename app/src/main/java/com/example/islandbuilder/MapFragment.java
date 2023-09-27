@@ -18,6 +18,7 @@ public class MapFragment extends Fragment {
     RecyclerView.Adapter mapAdapter;
     MapElement[][] grid;
     MapData mapData;
+    SelectorFragment selectorFragment;
 
 
     @Override
@@ -34,11 +35,14 @@ public class MapFragment extends Fragment {
 
         View rootView = inflater.inflate(R.layout.fragment_map,container,false);
         recyclerView = rootView.findViewById(R.id.mapRecyclerView);
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(requireContext(), MapData.HEIGHT,GridLayoutManager.HORIZONTAL,false);
-        recyclerView.setLayoutManager(gridLayoutManager);
+        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), MapData.HEIGHT, GridLayoutManager.HORIZONTAL, false));
         mapAdapter = new MapAdapter(grid);
         recyclerView.setAdapter(mapAdapter);
 
         return rootView;
+    }
+
+    public void setSelectorFragment(SelectorFragment selectorFragment) {
+        this.selectorFragment = selectorFragment;
     }
 }

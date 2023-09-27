@@ -12,11 +12,11 @@ import java.util.List;
 
 public class StructureAdapter extends RecyclerView.Adapter<StructureVH> {
     List<Structure> structureList;
-//    Context context;
-//    private SelectListener listener;
+    private SelectListener listener;
 
     public StructureAdapter(List<Structure> structureList) {
         this.structureList = structureList;
+
 
     }
 
@@ -34,6 +34,7 @@ public class StructureAdapter extends RecyclerView.Adapter<StructureVH> {
     Structure structure = structureList.get(position);
     holder.structureImage.setImageResource(structure.getDrawableId());
     holder.structureText.setText(structure.getLabel());
+
     }
 
     @Override

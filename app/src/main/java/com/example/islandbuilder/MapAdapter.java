@@ -39,6 +39,6 @@ public class MapAdapter extends RecyclerView.Adapter<MapVH> {
 
     @Override
     public int getItemCount() {
-        return grid.length;
+        return MapData.HEIGHT*MapData.WIDTH;
     }
 }
