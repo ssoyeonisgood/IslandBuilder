@@ -10,22 +10,20 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import java.util.List;
 
 public class MapFragment extends Fragment {
     RecyclerView recyclerView;
     RecyclerView.Adapter mapAdapter;
-    MapElement[][] grid;
     MapData mapData;
     SelectorFragment selectorFragment;
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mapData = mapData.get();
-        grid = mapData.getGrid();
 
     }
 
@@ -36,13 +34,16 @@ public class MapFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_map,container,false);
         recyclerView = rootView.findViewById(R.id.mapRecyclerView);
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), MapData.HEIGHT, GridLayoutManager.HORIZONTAL, false));
-        mapAdapter = new MapAdapter(grid);
+        mapAdapter = new MapAdapter();
         recyclerView.setAdapter(mapAdapter);
-
         return rootView;
     }
 
     public void setSelectorFragment(SelectorFragment selectorFragment) {
         this.selectorFragment = selectorFragment;
+    }
+
+    public RecyclerView.Adapter getMapAdapter() {
+        return mapAdapter;
     }
 }

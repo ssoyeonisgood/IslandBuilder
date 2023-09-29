@@ -1,5 +1,8 @@
 package com.example.islandbuilder;
 
+import android.content.ClipData;
+import android.content.ClipDescription;
+import android.media.Image;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;

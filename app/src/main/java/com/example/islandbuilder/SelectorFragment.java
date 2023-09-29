@@ -45,27 +45,11 @@ public class SelectorFragment extends Fragment {
        structureAdapter = new StructureAdapter(structureList);
        recyclerView.setAdapter(structureAdapter);
 
-        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(simpleCallback);
-        itemTouchHelper.attachToRecyclerView(recyclerView);
-
         return rootView;
     }
-    ItemTouchHelper.SimpleCallback simpleCallback = new ItemTouchHelper
-            .SimpleCallback(ItemTouchHelper.UP | ItemTouchHelper.DOWN | ItemTouchHelper.START | ItemTouchHelper.END, 0 ) {
-        @Override
-        public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
-            int fromPosition = viewHolder.getBindingAdapterPosition();
-            int toPosition = target.getBindingAdapterPosition();
-            Collections.swap(structureList,fromPosition,toPosition);
-            recyclerView.getAdapter().notifyItemMoved(fromPosition, toPosition);
-            return false;
-        }
 
-        @Override
-        public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
 
-        }
-    };
+
 
     public Structure getSelectedStructure() {
         return selectedStructure;
