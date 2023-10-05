@@ -14,10 +14,18 @@ import java.util.List;
 
 public class StructureAdapter extends RecyclerView.Adapter<StructureVH> {
     List<Structure> structureList;
+    SelectorFragment selectorFragment;
     private SelectListener listener;
+    private int selectedPos;
 
-    public StructureAdapter(List<Structure> structureList) {
+    public StructureAdapter(List<Structure> structureList, SelectListener listener ) {
         this.structureList = structureList;
+        this.listener = listener;
+        this.selectedPos = RecyclerView.NO_POSITION;
+    }
+
+    public void setSelectedPos(int position) {
+        this.selectedPos = position;
     }
 
     @NonNull
@@ -43,9 +51,20 @@ public class StructureAdapter extends RecyclerView.Adapter<StructureVH> {
 
             View.DragShadowBuilder myShadow = new View.DragShadowBuilder(v);
             v.startDragAndDrop(dragData, myShadow, structure, 0);
-
             return true;
         });
+
+    holder.structureImage.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            if (holder.getAdapterPosition() == RecyclerView.NO_POSITION) return;
+            listener.onItemClicked(structureList.get(holder.getLayoutPosition()));
+            notifyItemChanged(selectedPos);
+            selectedPos = holder.getAdapterPosition();
+            notifyItemChanged(selectedPos);
+        }
+    });
+
 
     }
 
@@ -53,4 +72,5 @@ public class StructureAdapter extends RecyclerView.Adapter<StructureVH> {
     public int getItemCount() {
         return structureList.size();
     }
+
 }

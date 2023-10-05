@@ -13,6 +13,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class MapAdapter extends RecyclerView.Adapter<MapVH> {
 
+    SelectorFragment selectorFragment;
+
     public MapAdapter(){
     }
     @NonNull
@@ -44,7 +46,11 @@ public class MapAdapter extends RecyclerView.Adapter<MapVH> {
             if(mapElement.getStructure() != null) {
                 mapElement.setStructure(null);
                 notifyItemChanged(position);
+            }else {
+                mapElement.setStructure(selectorFragment.getSelectedStructure());
+                notifyItemChanged(position);
             }
+
         });
 
         holder.image5.setOnDragListener((v, e ) -> {

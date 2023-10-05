@@ -17,10 +17,11 @@ public class StructureVH extends RecyclerView.ViewHolder {
 
     public ImageView structureImage;
     public TextView structureText;
+    public CardView cardView;
 
     public StructureVH(@NonNull View itemView) {
         super(itemView);
-
+        cardView = itemView.findViewById(R.id.cardView);
         structureImage = itemView.findViewById(R.id.structureImage);
         structureText = itemView.findViewById(R.id.structureText);
     }

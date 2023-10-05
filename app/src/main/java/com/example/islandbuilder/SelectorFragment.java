@@ -16,7 +16,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
-public class SelectorFragment extends Fragment {
+public class SelectorFragment extends Fragment implements SelectListener{
 
     RecyclerView recyclerView;
     RecyclerView.Adapter structureAdapter;
@@ -24,7 +24,6 @@ public class SelectorFragment extends Fragment {
     List<Structure> structureList;
     StructureData structureData;
     Structure selectedStructure;
-
 
 
     @Override
@@ -42,7 +41,7 @@ public class SelectorFragment extends Fragment {
        recyclerView.setHasFixedSize(true);
        layoutManager = new LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false);
        recyclerView.setLayoutManager(layoutManager);
-       structureAdapter = new StructureAdapter(structureList);
+       structureAdapter = new StructureAdapter(structureList, this);
        recyclerView.setAdapter(structureAdapter);
 
         return rootView;
@@ -57,5 +56,10 @@ public class SelectorFragment extends Fragment {
 
     public void setSelectedStructure(Structure selectedStructure) {
         this.selectedStructure = selectedStructure;
+    }
+
+    @Override
+    public void onItemClicked(Structure structure) {
+        setSelectedStructure(structure);
     }
 }
