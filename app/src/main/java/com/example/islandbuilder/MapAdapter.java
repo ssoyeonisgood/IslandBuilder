@@ -13,9 +13,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class MapAdapter extends RecyclerView.Adapter<MapVH> {
 
-    SelectorFragment selectorFragment;
-
-    public MapAdapter(){
+    SelectListener2 listener;
+    private int selectedPos;
+    public MapAdapter(SelectListener2 listener){
+        this.listener = listener;
+        this.selectedPos = RecyclerView.NO_POSITION;
+    }
+    public void setSelectedPos(int position) {
+        this.selectedPos = position;
     }
     @NonNull
     @Override
@@ -47,8 +52,11 @@ public class MapAdapter extends RecyclerView.Adapter<MapVH> {
                 mapElement.setStructure(null);
                 notifyItemChanged(position);
             }else {
-                mapElement.setStructure(selectorFragment.getSelectedStructure());
-                notifyItemChanged(position);
+                if (holder.getAdapterPosition() == RecyclerView.NO_POSITION) return;
+                listener.onItemClicked(mapElement);
+                notifyItemChanged(selectedPos);
+                selectedPos = holder.getAdapterPosition();
+                notifyItemChanged(selectedPos);
             }
 
         });

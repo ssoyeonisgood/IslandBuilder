@@ -14,7 +14,7 @@ import android.widget.Button;
 
 import java.util.List;
 
-public class MapFragment extends Fragment {
+public class MapFragment extends Fragment implements SelectListener2{
     RecyclerView recyclerView;
     RecyclerView.Adapter mapAdapter;
     MapData mapData;
@@ -34,7 +34,7 @@ public class MapFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_map,container,false);
         recyclerView = rootView.findViewById(R.id.mapRecyclerView);
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), MapData.HEIGHT, GridLayoutManager.HORIZONTAL, false));
-        mapAdapter = new MapAdapter();
+        mapAdapter = new MapAdapter(this);
         recyclerView.setAdapter(mapAdapter);
         return rootView;
     }
@@ -45,5 +45,12 @@ public class MapFragment extends Fragment {
 
     public RecyclerView.Adapter getMapAdapter() {
         return mapAdapter;
+    }
+
+    @Override
+    public void onItemClicked(MapElement mapElement) {
+        if (mapElement.isBuildable()){
+            mapElement.setStructure(selectorFragment.getSelectedStructure());
+        }
     }
 }
